@@ -8,21 +8,22 @@ from skimage.restoration import inpaint
 from skimage import io
 
 
-'''first inpainting algos based on the paper “An Image Inpainting Technique 
-Based on the Fast Marching Method” by Alexandru Telea in 2004'''
+'''first inpainting algos based on the paper An Image Inpainting Technique 
+Based on the Fast Marching Method by Alexandru Telea in 2004'''
 
-def fast_march(im_path, mask_path):
+def fast_march(im_file, mask_file):
 	img = cv2.imread(im_file)
-	mask = cv2.imread(mask_file)
+	mask = cv2.imread(mask_file,0)
+	print mask.shape
 	dst = cv2.inpaint(img,mask,3,cv2.INPAINT_TELEA)
 	return dst
 
-'''Second algorithm is based on the paper “Navier-Stokes, Fluid Dynamics, 
-and Image and Video Inpainting” by Bertalmio, Marcelo, Andrea L. Bertozzi, 
+'''Second algorithm is based on the paper Navier-Stokes, Fluid Dynamics, 
+and Image and Video Inpainting by Bertalmio, Marcelo, Andrea L. Bertozzi, 
 and Guillermo Sapiro in 2001. '''
 def fluid_dynamic(im_path, mask_path):
 	img = cv2.imread(im_file)
-	mask = cv2.imread(mask_file)
+	mask = cv2.imread(mask_file,0)
 	dst = cv2.inpaint(img,mask,3,cv2.INPAINT_NS)
 	return dst
 
